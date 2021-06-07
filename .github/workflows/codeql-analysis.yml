@@ -52,9 +52,10 @@ jobs:
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
    
     - run: |
-       sudo apt-get install libgmp3-dev
-       sudo apt-get install -y libsodium-dev 
-       sudo mkdir -p build
+       sudo yes | apt-get install build-essential libssl-dev
+       sudo yes | apt-get install libgmp3-dev
+       sudo yes | apt-get install -y libsodium-dev 
+       sudo yes | mkdir -p build
        cd build
        sudo cmake -D CMAKE_CXX_FLAGS="-g -O3 -fmax-errors=1" -DBUILD_BLS_PYTHON_BINDINGS=false ..
        sudo make -j8 $@
